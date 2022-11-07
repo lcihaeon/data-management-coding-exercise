@@ -1,0 +1,3 @@
+ClaimType|ClaimNumber|ClaimDate|PatientId|ProviderId|ClaimAmount|ProcedureDate|ProcedureCode|DrugId
+H|234|2022-08-21|10101|323|10983.77|2022-08-21|ER|022
+
