@@ -3,24 +3,18 @@ import logging, json
 import azure.functions as func
 import requests
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+FILE_WATCHER_URL = 'http://localhost:7071/api/file-watcher'
 
-    # name = req.params.get('name')
-    # if not name:
-    #     try:
-    #         req_body = req.get_json()
-    #     except ValueError:
-    #         pass
-    #     else:
-    #         name = req_body.get('name')
-    #
-    # if name:
-    #     return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    # else:
-    #     return func.HttpResponse(
-    #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-    #          status_code=200
-    #     )
-    data = requests.get('http://localhost:7071/api/file-watcher')
-    return func.HttpResponse(json.dumps(data.json()), headers={"content-type": "application/json"})
+
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info(f"Request with method {req.method} received.")
+    try:
+        if req.method == "POST":
+            data = requests.post(FILE_WATCHER_URL, json=req.get_json())
+        else:
+            data = requests.get(FILE_WATCHER_URL)
+        return func.HttpResponse(json.dumps(data.json()), headers={"content-type": "application/json"})
+    except requests.exceptions.HTTPError as e:
+        logging.error(e.response.text)
+        return func.HttpResponse(json.dumps({"status": None, "message": e.response.text, "error": e.response.text}),
+                                 headers={"content-type": "application/json"})
