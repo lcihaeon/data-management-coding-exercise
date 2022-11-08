@@ -8,8 +8,7 @@
       "name": "req",
       "route": "file-watcher",
       "methods": [
-        "get",
-        "post"
+        "get"
       ]
     },
     {
