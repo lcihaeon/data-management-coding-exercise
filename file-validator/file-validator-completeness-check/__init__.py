@@ -1,7 +1,6 @@
 import logging, json
 
 import azure.functions as func
-from services.todo_service import add_todos
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:

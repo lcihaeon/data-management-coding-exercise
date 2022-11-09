@@ -1,0 +1,27 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "type": "blob",
+      "name": "transferblob",
+      "dataType": "binary",
+      "path": "grliaotransferstorage/{name}",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
+    },
+    {
+        "type": "httpTrigger",
+        "direction": "in",
+        "name": "req",
+        "route": "file-handler/validate",
+        "methods": [
+          "post"
+        ]
+      },
+      {
+        "type": "http",
+        "direction": "out",
+        "name": "$return"
+      }
+  ]
+}

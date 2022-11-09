@@ -15,6 +15,22 @@
       "type": "http",
       "direction": "out",
       "name": "$return"
+    },
+    {
+      "type": "blob",
+      "name": "xferStorage",
+      "dataType": "binary",
+      "path": "grliaotransferstorage/{DateTime}",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
+    },
+    {
+      "type": "blob",
+      "name": "errorStorage",
+      "dataType": "binary",
+      "path": "grliaoerrorstorage/{DateTime}",
+      "connection": "AzureWebJobsErrorStorage",
+      "direction": "out"
     }
   ]
 }

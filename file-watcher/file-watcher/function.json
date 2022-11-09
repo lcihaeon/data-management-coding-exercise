@@ -3,18 +3,10 @@
   "bindings": [
     {
       "authLevel": "function",
-      "type": "httpTrigger",
+      "type": "timerTrigger",
       "direction": "in",
-      "name": "req",
-      "route": "file-watcher",
-      "methods": [
-        "get"
-      ]
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "$return"
+      "name": "timer",
+      "schedule": "0 */5 * * * *"
     }
   ]
 }
